@@ -34,7 +34,6 @@ async fn main() {
     rules.push((Type::RED, Type::RED, get_random_value()));
     rules.push((Type::RED, Type::GREEN, get_random_value()));
     rules.push((Type::RED, Type::BLUE, get_random_value()));
-    // rules.push((Type::YELLOW, Type::RED, 1.5));
 
     rules.push((Type::BLUE, Type::YELLOW, get_random_value()));
     rules.push((Type::BLUE, Type::RED, get_random_value()));
@@ -45,8 +44,6 @@ async fn main() {
     rules.push((Type::GREEN, Type::RED, get_random_value()));
     rules.push((Type::GREEN, Type::GREEN, get_random_value()));
     rules.push((Type::GREEN, Type::BLUE, get_random_value()));
-
-    // rules.push((Type::YELLOW, Type::YELLOW, -1.0));
 
     loop {
         clear_background(BLACK);
@@ -65,9 +62,6 @@ async fn main() {
             };
             draw_circle(particles[i].x, particles[i].y, 5.0, color);
         }
-
-        draw_text("HELLO", 20.0, 20.0, 30.0, DARKGRAY);
-
         next_frame().await
     }
 }
