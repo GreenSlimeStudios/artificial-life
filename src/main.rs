@@ -10,8 +10,9 @@ fn window_conf() -> Conf {
     Conf {
         window_title: "Artificial life".to_owned(),
         // fullscreen: true,
-        window_height: 1000,
-        window_width: 1000,
+        window_height: 1080,
+        window_width: 1920,
+        // fullscreen: true,
         ..Default::default()
     }
 }
@@ -122,10 +123,10 @@ impl Cell {
         if self.y <= 100.0 {
             self.vy = self.vy.abs();
         }
-        if self.x >= 900.0 {
+        if self.x >= screen_width() - 100.0 {
             self.vx = self.vx.abs() * -1.0;
         }
-        if self.y >= 900.0 {
+        if self.y >= screen_height() - 100.0 {
             self.vy = self.vy.abs() * -1.0;
         }
 
@@ -153,7 +154,11 @@ fn random() -> f32 {
 fn create_cells(number: u32, cell_type: Type) -> Vec<Cell> {
     let mut group: Vec<Cell> = Vec::new();
     for i in 0..number {
-        group.push(Cell::new(random(), random(), cell_type));
+        group.push(Cell::new(
+            rand::thread_rng().gen_range(250.0..screen_width() - 250.0),
+            rand::thread_rng().gen_range(250.0..screen_height() - 250.0),
+            cell_type,
+        ));
     }
     group
 }
